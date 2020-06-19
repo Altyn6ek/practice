@@ -11,19 +11,26 @@
 # Для нашего примера после вызова функции balance должен содержать в себе:
 # { 'user1': 140, 'user2': 360 }
 
-balance1 = {'user1': 100, 'user2': 500}
-transactions1 = [{'user1': -10}, {'user2': -20}, {'user1': 50}, {'user2': -20}, {'user2': -100}]
+balance = {'user1': 100, 'user2': 500}
+transactions = [{'user1': -10}, {'user2': -20}, {'user1': 50}, {'user2': -20}, {'user2': -100}]
 
+
+# def apply_transactions(balance: dict, transactions: [dict]):
+#     for transaction in transactions:
+#         transaction_user = list(transaction.keys())
+#         if transaction_user[0] == "user1":
+#             balance['user1'] += transaction['user1']
+#         else:
+#             balance['user2'] += transaction['user2']#
+
+# print(apply_transactions(balance1, transactions1))
 
 def apply_transactions(balance: dict, transactions: [dict]):
     for transaction in transactions:
-        transaction_user = list(transaction.keys())[0]
-        if transaction_user == "user1":
-            balance['user1'] += transaction['user1']
-        else:
-            balance['user2'] += transaction['user2']
-    return balance
+        for user, spendings in transaction.items():
+            balance[user] += spendings
 
 
-print(apply_transactions(balance1, transactions1))
+print(apply_transactions(balance, transactions))
+print(balance)
 
